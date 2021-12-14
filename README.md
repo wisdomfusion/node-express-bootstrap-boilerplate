@@ -2,9 +2,15 @@
 
 Node.js/Express.js MVC skeleton project with front end assets built with Bootstrap 4, webpack 5 and jQuery.
 
-## app_server
+## 1. Installation
+
+### 1.1 app_server
+
+**Prepare dotenv file**
 
 Copy `.env.example` to new `.env` file.
+
+**Serving the application in development environment**
 
 ```sh
 npm i
@@ -12,12 +18,20 @@ npm i -g nodemon
 nodemon ./bin/www
 ```
 
-DEBUG
+**Debugging the application**
+
 ```sh
 $env:DEBUG='*'; nodemon .\bin\www
 ```
 
-## app_assets
+**Serving the application in production environment**
+
+```sh
+npm i -g pm2
+pm2 start ./bin/www
+```
+
+### 2. app_assets
 
 ```
 cd app_assets/
