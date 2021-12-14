@@ -1,6 +1,6 @@
 # node-express-bootstrap-boilerplate
 
-Node.js/Express.js MVC skeleton project with front end assets built with Bootstrap 4, webpack 5 and jQuery.
+Node.js/Express.js MVC skeleton project, front end assets built with webpack 5, Bootstrap 4 and jQuery.
 
 ## 1. Installation
 
@@ -38,4 +38,6 @@ cd app_assets/
 npm i
 npm run watch
 ```
+
+## 2. Dockerization
 
