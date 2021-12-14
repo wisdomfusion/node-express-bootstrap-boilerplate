@@ -1,0 +1,16 @@
+.idea
+
+*.log
+
+pids
+*.pid
+*.seed
+.env
+
+node_modules
+
+public/
+
+coverage
+
+npm-debug.log
