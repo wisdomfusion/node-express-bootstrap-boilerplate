@@ -1,8 +1,8 @@
 const path = require('path');
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin   = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin           = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
     const mode = argv.mode === 'production' ? 'production' : 'development';
@@ -24,18 +24,17 @@ module.exports = (env, argv) => {
         },
 
         optimization: {
-            minimizer: isProd ? [
-                new CssMinimizerPlugin(),
-            ] : [],
+            minimize: isProd,
+            minimizer: [new TerserPlugin()],
         },
 
         module: {
             rules: [
                 {
-                    test: require.resolve("jquery"),
-                    loader: "expose-loader",
+                    test: require.resolve('jquery'),
+                    loader: 'expose-loader',
                     options: {
-                        exposes: ["$", "jQuery"],
+                        exposes: ['$', 'jQuery'],
                     },
                 },
                 {
