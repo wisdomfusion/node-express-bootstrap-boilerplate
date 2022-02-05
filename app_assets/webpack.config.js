@@ -1,19 +1,19 @@
 const path = require('path');
-
-const MiniCssExtractPlugin   = require("mini-css-extract-plugin");
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const TerserPlugin           = require("terser-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
     const mode = argv.mode === 'production' ? 'production' : 'development';
 
-    const isDev  = mode === 'development';
+    const isDev = mode === 'development';
     const isProd = mode === 'production';
 
     let config = {
         name: 'assets',
         entry: {
-            main: './assets/main.js'
+            main: './main.js'
         },
         mode,
         output: {
@@ -34,7 +34,16 @@ module.exports = (env, argv) => {
                     test: require.resolve('jquery'),
                     loader: 'expose-loader',
                     options: {
-                        exposes: ['$', 'jQuery'],
+                        exposes: [
+                            {
+                                globalName: '$',
+                                override: true,
+                            },
+                            {
+                                globalName: 'jQuery',
+                                override: true,
+                            }
+                        ],
                     },
                 },
                 {
@@ -80,8 +89,22 @@ module.exports = (env, argv) => {
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css'
             }),
+
+            new webpack.DefinePlugin({
+                'process.env': {
+                    TARGET_ENV: JSON.stringify(env.TARGET_ENV),
+                },
+            }),
         ],
 
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, '.'),
+                '@core': path.resolve(__dirname, 'core'),
+                '@api': path.resolve(__dirname, 'api'),
+                '@utils': path.resolve(__dirname, 'utils'),
+            }
+        },
     };
 
     if (isDev) {

@@ -8,6 +8,8 @@ module.exports = {
     lte: (left, right) => left <= right,
     gte: (left, right) => left >= right,
 
+    not: val => !val,
+
     // 自增自减，如：{{inc 1}} 结果为 2
     inc: val => val + 1,
     dec: val => val - 1,
@@ -16,7 +18,7 @@ module.exports = {
     abs: val => Math.abs(val),
 
     // 数组长度
-    len: arr => arr.length,
+    len: arr => !!arr && arr.length ? arr.length : 0,
 
     // 数学运算，如：{{math @index '+' 1}}
     math: (lvalue, operator, rvalue) => {
@@ -44,5 +46,12 @@ module.exports = {
     // 逻辑或，如：{{#if or(a b c d)}}
     or: function () {
         return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
-    }
+    },
+
+    for: function(from, to, incr, block) {
+        let accum = '';
+        for(let i = from; i < to; i += incr)
+            accum += block.fn(i);
+        return accum;
+    },
 };
