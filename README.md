@@ -20,8 +20,22 @@ nodemon ./bin/www
 
 **Debugging the application**
 
+Windows CMD
+
+```
+set DEBUG='*' && nodemon .\bin\www
+```
+
+Windows PowerShell
+
 ```sh
 $env:DEBUG='*'; nodemon .\bin\www
+```
+
+macOS / Linux
+
+```sh
+DEBUG='*'; nodemon .\bin\www
 ```
 
 **Serving the application in production environment**
@@ -33,10 +47,34 @@ pm2 start ./bin/www
 
 ### 2. app_assets
 
+Watching while developing
+
 ```
 cd app_assets/
 npm i
 npm run watch
+```
+
+Building for development
+
+```
+npm run dev
+```
+
+Building for staging
+
+```
+cd app_assets/
+npm i
+npm run stage
+```
+
+Building for production
+
+```
+cd app_assets/
+npm i
+npm run prod
 ```
 
 ## 2. Dockerization
