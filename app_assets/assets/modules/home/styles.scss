@@ -1,0 +1,20 @@
+@import "../../variables";
+@import "~bootstrap/scss/bootstrap";
+
+#MODULE-home {
+
+
+  // mobile first
+
+  @include media-breakpoint-up(sm) {
+  }
+
+  @include media-breakpoint-up(md) {
+  }
+
+  @include media-breakpoint-up(lg) {
+  }
+
+  @include media-breakpoint-up(xl) {
+  }
+}
