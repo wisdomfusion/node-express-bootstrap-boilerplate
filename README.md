@@ -2,9 +2,13 @@
 
 Node.js/Express.js MVC skeleton project, front end assets built with webpack 5, Bootstrap 4 and jQuery.
 
-## 1. Installation
+## Installation
 
-### 1.1 app_server
+## Bootstrap version
+
+Checkout to git branch `bs5` if you intend to use Bootstrap 5 in `app_assets` project.
+
+### app_server
 
 **Prepare dotenv file**
 
@@ -45,7 +49,7 @@ npm i -g pm2
 pm2 start ./bin/www
 ```
 
-### 2. app_assets
+### app_assets
 
 Watching while developing
 
@@ -77,5 +81,5 @@ npm i
 npm run prod
 ```
 
-## 2. Dockerization
+## Dockerization
 
